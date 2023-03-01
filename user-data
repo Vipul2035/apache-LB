@@ -1,0 +1,14 @@
+#!/bin/bash
+echo "*** Installing httpd"
+  yum install httpd -y
+  systemctl start httpd
+  rm /var/www/html/index.html
+  yum install unzip
+  wget https://www.free-css.com/assets/files/free-css-templates/download/page287/cakezone.zip 
+  unzip cakezone.zip
+  cp -rf cake-shop-website-template/* /var/www/html/
+  usermod -a -G apache ec2-user
+  chown -R ec2-user:apache /var/www
+  systemctl restart httpd
+  
+  EOF
